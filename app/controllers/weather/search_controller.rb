@@ -1,11 +1,8 @@
 module Weather
   class SearchController < ApplicationController
     def index
-    end
-
-    def create
-      city = params[:city]
-      @result = WeatherService.fetch(city)
+      @searched = params[:zip_code].present?
+      @result = Weather::WeatherService.run(params[:zip_code]) if @searched
     end
   end
 end
